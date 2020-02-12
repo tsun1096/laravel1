@@ -6,7 +6,7 @@ services:
       args:
         - TZ=${TZ:-Asia/Tokyo}
     ports:
-      - ${APP_PORT:-18000}:8000
+      - ${APP_PORT:-12000}:2000
     volumes:
       - ${PROJECT_PATH:-./src}:/work
       - ./docker/ash:/etc/profile.d
@@ -22,7 +22,7 @@ services:
       - DB_PASSWORD=${DB_PASS:-secret}
       - TZ=${TZ:-Asia/Tokyo}
       - MAIL_HOST=${MAIL_HOST:-mail}
-      - MAIL_PORT=${MAIL_PORT:-1025}
+      - MAIL_PORT=${MAIL_PORT:-1030}
       - CACHE_DRIVER=redis
       - SESSION_DRIVER=redis
       - QUEUE_DRIVER=redis
@@ -33,7 +33,7 @@ services:
     depends_on:
       - app
     ports:
-      - ${WEB_PORT:-10080}:80
+      - ${WEB_PORT:-10090}:90
     volumes:
       - ${PROJECT_PATH:-./src}:/work
       - ./logs:/var/log/nginx
@@ -54,7 +54,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
       - TZ=${TZ:-Asia/Tokyo}
     ports:
-      - ${DB_PORT:-13306}:3306
+      - ${DB_PORT:-13333}:3333
 
   db-testing:
     image: mysql:8.0
@@ -70,7 +70,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
       - TZ=${TZ:-Asia/Tokyo}
     ports:
-      - ${DB_TESTING_PORT:-13307}:3306
+      - ${DB_TESTING_PORT:-13300}:3300
 
   node:
     image: node:12.14-alpine
@@ -87,7 +87,7 @@ services:
   mail:
     image: mailhog/mailhog
     ports:
-      - ${MAILHOG_PORT:-18025}:8025
+      - ${MAILHOG_PORT:-18030}:8030
 
 volumes:
   db-store:
