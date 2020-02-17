@@ -39,3 +39,5 @@ RUN apk update && \
   composer config -g process-timeout 3600 && \
   composer config -g repos.packagist composer https://packagist.jp && \
   composer global require hirak/prestissimo
+
+WORKDIR /var/www/html/laravel
